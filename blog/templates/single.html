@@ -1,0 +1,73 @@
+{% extends "header.html" %}
+{% block content %}
+
+<body class="single is-preload">
+
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+		<!-- Main -->
+		<div id="main">
+			<!-- Post -->
+			<article class="post">
+				<header>
+					<div class="title">
+						<h2>{{ post.title }}</h2>
+					</div>
+					<div class="meta">
+						<time class="published"
+							datetime="{{ post.published|date:'d-m-Y'}}">{{ post.published|date:'d-m-Y'}}</time>
+						<a href="#" class="author"><span class="name">Jane Doe</span><img
+								src="{{post.author.avatar.url}}" alt="" /></a>
+					</div>
+				</header>
+				{% if post.thumbnail %}
+				<span class="image featured"><img src="{{ post.thumbnail.url}}" alt="" /></span>
+				{% endif %}
+				{{ post.content | safe }}
+				<footer>
+					<ul class="stats">
+						<li><a href="category/{{post.category.slug}}">{{ post.category}}</a></li>
+						{% comment %} IF YOU WANT USING DJANGO TEMPLATE UNCOMMENT LINE OF CODE BELOW {% endcomment %}
+						{% comment %} <li><a href="#" class="icon solid fa-comment">{{post.count_comment}}</a></li>
+						{% endcomment %}
+					</ul>
+				</footer>
+
+			</article>
+		</div>
+		<h3>Comments:</h3>
+		{% for comment in post.get_comments %}
+		<article class="mini-post">
+			<header>
+				<h6>{{ comment.content }}</h6>
+				<time class="published" datetime="2015-10-18">{{ comment.timestamp }}</time>
+				<p class="author">Autor: <strong>{{ comment.user}}</strong></p>
+			</header>
+		</article>
+		{% endfor %}
+
+		<h3>Add Comment:</h3>
+		{% if request.user.is_authenticated %}
+		<article class="mini-post">
+			<form method="POST" action="" onSubmit="clearField();">
+				{% csrf_token %}
+				{{ form }}
+				<div class="col-12">
+					<ul class="actions">
+						<li><input afterclick="this.form.reset();" type="submit" value="Send Message" /></li>
+						<li><input type="reset" value="Reset" /></li>
+					</ul>
+				</div>
+			</form>
+		</article>
+
+		{% else %}
+		<h4>You must be login </h4>
+		{% endif %} 
+
+
+		
+		
+
+		{% endblock %}

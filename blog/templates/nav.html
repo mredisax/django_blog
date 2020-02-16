@@ -1,0 +1,71 @@
+		<!-- Header -->
+		<header id="header">
+			<h1><a href="/">My Blog</a></h1>
+			
+			<nav class="main">
+				<ul>
+					<li class="search">
+						<a class="fa-search" href="#search">Search</a>
+						<form id="search" method="get" action="#">
+							<input type="text" name="query" placeholder="Search" />
+						</form>
+					</li>
+					<li class="menu">
+						<a class="fa-bars" href="#menu">Menu</a>
+					</li>
+				</ul>
+			</nav>
+		</header>
+
+		<!-- Menu -->
+		<section id="menu">
+
+			<!--Acount-->
+			<section>
+			{% if user.is_authenticated %}
+				<p>
+				Login: {{user}}
+                
+				</p>
+			{% endif %}
+			</section>
+
+			<!-- Search -->
+			<section>
+				<form class="search" method="get" action="#">
+					<input type="text" name="query" placeholder="Search" />
+				</form>
+			</section>
+			<section>
+				<ul class="links">
+					<li>
+						<a href="#">
+							<h3>Lorem ipsum</h3>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<h3>Dolor sit amet</h3>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<h3>Feugiat veroeros</h3>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<h3>Etiam sed consequat</h3>
+						</a>
+					</li>
+				</ul>
+			</section>
+
+			<!-- Actions -->
+			<section>
+				<ul class="actions stacked">
+					<li><a href="#" class="button large fit">Log In</a></li>
+				</ul>
+			</section>
+
+		</section>

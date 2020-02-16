@@ -1,0 +1,21 @@
+{% extends "header.html" %}
+{% block content %}
+
+<body class="single is-preload">
+	<div id="wrapper">
+		<div id="main">
+			<h2>{{ category.name }}</h2>
+			{% for p in post %}
+			<article class="mini-post">
+				<header>
+					<h3><a href="/{{ p.slug }}-{{p.id}}">{{ p.title }}</a></h3>
+					<time class="published" datetime="2015-10-19">October 19, 2015</time>
+					<a href="#" class="author"><img src="{{p.author.avatar.url}}" alt="" /></a>
+				</header>
+				{% if p.thumbnail%}
+				<a href="/{{ p.slug }}-{{p.id}}" class="image"><img src="{{p.thumbnail.url}}" alt="" /></a>
+				{% endif %}
+			</article>
+
+			{% endfor %}
+			{% endblock %}
