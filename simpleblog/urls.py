@@ -18,6 +18,7 @@ from django.urls import path,re_path, include
 from django.conf import settings
 from django.contrib.staticfiles.urls import static, staticfiles_urlpatterns
 
+
 urlpatterns = [
     path('', include('blog.urls')),
     path('admin/', admin.site.urls),

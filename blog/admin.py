@@ -2,9 +2,10 @@ from django.contrib import admin
 from .models import Post, Category, Author, Comment
 from ckeditor.widgets import CKEditorWidget
 from django.db import models
+from django.contrib.admin import AdminSite
+
 
 class PostAdmin(admin.ModelAdmin):
-
     fieldsets = [
         ('Title/date/img', {'fields': ['title','slug',('published','thumbnail','category','author') ]}),
         ('Content', {'fields': ['content']})
@@ -35,7 +36,7 @@ class AuthorAdmin(admin.ModelAdmin):
 class CommentAdmin(admin.ModelAdmin):
     list_display = ('user', 'post', 'content')
 
-admin.site.register(Post,PostAdmin)
+
 admin.site.register(Category,CategoryAdmin)
 admin.site.register(Author, AuthorAdmin)
 admin.site.register(Comment, CommentAdmin)
